@@ -1,7 +1,7 @@
 import { RUNNING } from './constants';
 import BranchNode from './BranchNode';
 import Node from './Node';
-import { Blackboard, RunConfig, StatusWithState } from './types';
+import { Blackboard, RunConfig, Status, StatusWithState } from './types';
 import { isRunning } from './helper';
 
 export default class Random extends BranchNode {
@@ -23,7 +23,7 @@ export default class Random extends BranchNode {
     }
     if (introspector) {
       const debugResult = running ? RUNNING : result;
-      introspector.wrapLast(1, this, debugResult, blackboard);
+      introspector.wrapLast(1, this, debugResult as Status, blackboard);
     }
     if (running) {
       const returningResult = { total: RUNNING, state: new Array(this.numNodes).fill(undefined) };
